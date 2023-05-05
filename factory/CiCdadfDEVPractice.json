@@ -1,0 +1,9 @@
+{
+	"name": "CiCdadfDEVPractice",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d8658f06-fa96-4b23-b379-776a803f52e1",
+		"tenantId": "865cc515-a530-4538-8ef8-072b7b2be759"
+	}
+}
