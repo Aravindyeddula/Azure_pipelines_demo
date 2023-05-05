@@ -1,5 +1,5 @@
 {
-	"name": "pl_copy",
+	"name": "pipeline1",
 	"properties": {
 		"activities": [
 			{
@@ -62,8 +62,6 @@
 				]
 			}
 		],
-		"annotations": [],
-		"lastPublishTime": "2023-04-28T10:07:56Z"
-	},
-	"type": "Microsoft.DataFactory/factories/pipelines"
+		"annotations": []
+	}
 }
