@@ -28,11 +28,17 @@ jobs:
       run: if('${{ inputs.skipAzModuleInstallation }}' -ne 'true') { Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force }
       shell: pwsh
       
-    - name: Azure Login
-      uses: Azure/login@v1
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-        enable-AzPSSession: true 
+    
+    - run: |
+        az webapp list --query "[?state=='Running']"
 
     #Disable Triggers
     - name: Run Pre-deployment script
