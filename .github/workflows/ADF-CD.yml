@@ -32,30 +32,8 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-    
-    - run: |
-        az webapp list --query "[?state=='Running']"
-
-    #Disable Triggers
-    - name: Run Pre-deployment script
-      shell: pwsh
-      run: pwsh -command "./PrePostDeploymentScript.ps1 -armTemplate ${{ vars.ARM_TEMPLATE_FILE }}  -ResourceGroupName ${{ vars.AZURE_RG }} -DataFactoryName ${{ vars.ADF_FACTORYNAME }} -predeployment $true -deleteDeployment $false"
-      
-      
-    - name: Deploy ADF ARM Templates ${{ matrix.stage }}
-      uses: Azure/arm-deploy@v1
-      with:
-        resourceGroupName: ${{ vars.AZURE_RG }}
-        template: ${{ vars.ARM_TEMPLATE_FILE }}
-        parameters: 
-          ${{ vars.ARM_TEMPLATE_PARAMETERS_FILE }}
-          factoryName=${{ vars.ADF_FACTORYNAME }} 
-        
-    #Enable Triggers
-    - name: Run Post-deployment script
-      shell: pwsh
-      run: pwsh -command "./PrePostDeploymentScript.ps1 -armTemplate ${{ vars.ARM_TEMPLATE_FILE }} -ResourceGroupName ${{ vars.AZURE_RG }} -DataFactoryName ${{ vars.ADF_FACTORYNAME }} -predeployment $false -deleteDeployment $true"
+        - uses: azure/login@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+        - run: |
+            az webapp list --query "[?state=='Running']"
